@@ -2,6 +2,7 @@ import React from 'react';
 import { View, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
 
 const styles = StyleSheet.create({
   input: {
@@ -18,9 +19,9 @@ const styles = StyleSheet.create({
 const formCadastro = props => (
   <View style={{ flex: 1, padding: 10 }}>
     <View style={{ flex: 4, justifyContent: 'center' }}>
-      <TextInput value={props.nome} placeholder="Nome" style={styles.input} />
-      <TextInput value={props.email} placeholder="Email" style={styles.input} />
-      <TextInput value={props.senha} placeholder="Senha" style={styles.input} />
+      <TextInput value={props.nome} placeholder="Nome" style={styles.input} onChangeText={texto => props.modificaNome(texto)} />
+      <TextInput value={props.email} placeholder="Email" style={styles.input} onChangeText={texto => props.modificaEmail(texto)} />
+      <TextInput value={props.senha} placeholder="Senha" style={styles.input} onChangeText={texto => props.modificaSenha(texto)} />
     </View>
     <View style={{ flex: 1 }}>
       <Button
@@ -36,6 +37,9 @@ formCadastro.propTypes = {
   nome: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   senha: PropTypes.string.isRequired,
+  modificaNome: PropTypes.func.isRequired,
+  modificaEmail: PropTypes.func.isRequired,
+  modificaSenha: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => (
@@ -46,4 +50,8 @@ const mapStateToProps = state => (
   }
 );
 
-export default connect(mapStateToProps, null)(formCadastro);
+export default connect(mapStateToProps, {
+  modificaEmail,
+  modificaSenha,
+  modificaNome,
+})(formCadastro);
