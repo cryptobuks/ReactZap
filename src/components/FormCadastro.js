@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, Image } from 'react-native';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { modificaEmail, modificaSenha, modificaNome } from '../actions/AutenticacaoActions';
@@ -10,27 +10,31 @@ const styles = StyleSheet.create({
     height: 35,
     textAlign: 'center',
     marginTop: 20,
-    borderColor: 'gray',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 5,
   },
 });
 
+const bg = require('../imgs/bg.jpg');
+
 const formCadastro = props => (
-  <View style={{ flex: 1, padding: 10 }}>
-    <View style={{ flex: 4, justifyContent: 'center' }}>
-      <TextInput value={props.nome} placeholder="Nome" style={styles.input} onChangeText={texto => props.modificaNome(texto)} />
-      <TextInput value={props.email} placeholder="Email" style={styles.input} onChangeText={texto => props.modificaEmail(texto)} />
-      <TextInput value={props.senha} placeholder="Senha" style={styles.input} onChangeText={texto => props.modificaSenha(texto)} />
+  <Image style={{ flex: 1, width: null }} source={bg}>
+    <View style={{ flex: 1, padding: 10, backgroundColor: 'transparent' }}>
+      <View style={{ flex: 4, justifyContent: 'center' }}>
+        <TextInput value={props.nome} placeholder="Nome" style={styles.input} onChangeText={texto => props.modificaNome(texto)} />
+        <TextInput value={props.email} placeholder="Email" style={styles.input} onChangeText={texto => props.modificaEmail(texto)} />
+        <TextInput secureTextEntry value={props.senha} placeholder="Senha" style={styles.input} onChangeText={texto => props.modificaSenha(texto)} />
+      </View>
+      <View style={{ flex: 1 }}>
+        <Button
+          onPress={() => false}
+          title="Cadastrar"
+          color="#115E54"
+        />
+      </View>
     </View>
-    <View style={{ flex: 1 }}>
-      <Button
-        onPress={() => false}
-        title="Cadastrar"
-        color="#115E54"
-      />
-    </View>
-  </View>
+  </Image>
 );
 
 formCadastro.propTypes = {
