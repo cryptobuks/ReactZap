@@ -36,8 +36,8 @@ const formLogin = props => (
         <Text style={{ fontSize: 26 }}>ReactZap</Text>
       </View>
       <View style={{ flex: 2, alignItems: 'center' }}>
-        <TextInput value={props.email} style={styles.input} placeholder="Email" onChangeText={texto => props.modificaEmail(texto)} />
-        <TextInput secureTextEntry value={props.senha} style={styles.input} placeholder="Senha" onChangeText={texto => props.modificaSenha(texto)} />
+        <TextInput value={props.email} style={styles.input} placeholder="Email" placeholderTextColor="gray" onChangeText={texto => props.modificaEmail(texto)} />
+        <TextInput secureTextEntry value={props.senha} style={styles.input} placeholder="Senha" placeholderTextColor="gray" onChangeText={texto => props.modificaSenha(texto)} />
         <TouchableHighlight underlayColor="transparent" onPress={() => Actions.formCadastro()}>
           <Text style={{ fontSize: 13, marginTop: 25, color: 'black' }}>Ainda não tem cadastro? Cadastre-se!</Text>
         </TouchableHighlight>
