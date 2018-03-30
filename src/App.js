@@ -1,31 +1,27 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 
 import Routes from './Routes';
 import reducers from './reducers';
 
-function initializeFirebase() {
-  const config = {
-    apiKey: 'AIzaSyCg3TVZi-Ib3-DOuZiWzYW-4k4B87T9Mq4',
-    authDomain: 'react-zap.firebaseapp.com',
-    databaseURL: 'https://react-zap.firebaseio.com',
-    projectId: 'react-zap',
-    storageBucket: 'react-zap.appspot.com',
-    messagingSenderId: '702651061412',
-  };
-  firebase.initializeApp(config);
-}
-
 class App extends Component {
   componentWillMount() {
-    // Initialize Firebase
-    initializeFirebase();
+    firebase.initializeApp({
+      apiKey: 'AIzaSyDzaAtP3pS2EHo0rMxSvM8RGvUNlIJ9itw',
+      authDomain: 'whatsapp-clone-a1774.firebaseapp.com',
+      databaseURL: 'https://whatsapp-clone-a1774.firebaseio.com',
+      projectId: 'whatsapp-clone-a1774',
+      storageBucket: 'whatsapp-clone-a1774.appspot.com',
+      messagingSenderId: '882014132004',
+    });
   }
+
   render() {
     return (
-      <Provider store={createStore(reducers)}>
+      <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
         <Routes />
       </Provider>
     );
